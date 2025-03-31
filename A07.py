@@ -39,19 +39,19 @@ figB = px.choropleth(
     height = 600
 )
 
-figB.update_layout(
-    coloraxis_showscale=False,
+figB.update_layout(coloraxis_showscale=False,
     annotations= [go.layout.Annotation(
             text=f"BRA has won 5 times!",
             x=0.99, y=0.95,
             xref="paper", yref="paper",
             showarrow=False,
             font=dict(size=15, color="black"),
-        )])
+        )]
+)
 
 for frame in figB.frames:
     country = frame.name
-    win = df_amt.loc[df_amt["Country"] == "BRA"]["Won"].values[0]
+    win = df_amt.loc[df_amt["Country"] == country, "Won"].iloc[0]
     frame.layout.annotations = [
         go.layout.Annotation(
             text=f"{country} has won {win} times!",
@@ -117,7 +117,7 @@ figC.update_layout(
 )
 
 app = dash.Dash()
-server = app.server
+
 app.layout = ([
     html.H1("Choropleth Maps of FIFA Soccer World Cup"),
     dcc.Dropdown(

@@ -117,7 +117,7 @@ figC.update_layout(
 )
 
 app = dash.Dash()
-
+server = app.server
 app.layout = ([
     html.H1("Choropleth Maps of FIFA Soccer World Cup"),
     dcc.Dropdown(
